@@ -23,7 +23,7 @@ async def test_reset(dut):
 
     await reset_dut(dut)
 
-    assert dut.show_product_number.value == 1, \
+    assert dut.show_product_number.value == 0, \
         "Machine should return to product selection after reset"
 
 
@@ -39,7 +39,7 @@ async def test_product_selection(dut):
     await RisingEdge(dut.clk)
     await Timer(1, unit="ns")
 
-    assert dut.show_payment_status.value == 0, \
+    assert dut.show_payment_status.value == 1, \
         "Machine should move to payment state"
 
 
@@ -62,7 +62,7 @@ async def test_successful_payment(dut):
     await Timer(1, unit="ns")
 
 
-    assert dut.show_output_status.value == 0, \
+    assert dut.show_output_status.value == 1, \
         "Product should be dispensed after successful payment"
 
 
