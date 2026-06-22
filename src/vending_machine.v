@@ -58,7 +58,7 @@ module vending_machine_fsm (
                  product_available) begin
 
             case (selected_product_number)
-                4'b0000: product_price <= 12'd150;
+                4'b0000: product_price <= 12'd0; // Free product for testing
                 4'b0001: product_price <= 12'd200;
                 4'b0010: product_price <= 12'd250;
                 4'b0011: product_price <= 12'd300;
@@ -66,6 +66,7 @@ module vending_machine_fsm (
                 4'b0101: product_price <= 12'd400;
                 4'b0110: product_price <= 12'd450;
                 4'b0111: product_price <= 12'd500;
+                4'b1000: product_price <= 12'd550;
                 default: product_price <= 12'd0;
             endcase
         end

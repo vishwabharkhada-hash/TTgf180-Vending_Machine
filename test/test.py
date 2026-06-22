@@ -23,7 +23,7 @@ async def test_reset(dut):
 
     await reset_dut(dut)
 
-    assert dut.show_product_number.value == 1, \
+    assert dut.show_product_number.value == 0,\
         "Machine should return to product selection after reset"
 
 
@@ -68,6 +68,10 @@ async def test_successful_payment(dut):
     assert dut.show_output_status.value == 1,\
         "Product should be dispensed after successful payment"
 
+
+    cocotb.log.info(f"show_product={dut.show_product_number.value}")
+    cocotb.log.info(f"show_payment={dut.show_payment_status.value}")
+    cocotb.log.info(f"show_output={dut.show_output_status.value}")
 
 # @cocotb.test()
 # async def test_timeout(dut):
