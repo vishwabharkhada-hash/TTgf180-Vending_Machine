@@ -28,7 +28,32 @@ module tb ();
 `endif
 
   // Replace tt_um_example with your module name:
-  tt_um_example user_project (
+reg onlinepayment_selected;
+reg [3:0] selected_product_number;
+reg online_payment_success;
+
+wire show_product_number;
+wire show_payment_status;
+wire show_output_status;
+wire seg_a, seg_b, seg_c, seg_d, seg_e, seg_f, seg_g;
+
+vending_machine_fsm dut (
+    .clk(clk),
+    .reset_n(rst_n),
+    .onlinepayment_selected(onlinepayment_selected),
+    .selected_product_number(selected_product_number),
+    .online_payment_success(online_payment_success),
+    .show_product_number(show_product_number),
+    .show_payment_status(show_payment_status),
+    .show_output_status(show_output_status),
+    .seg_a(seg_a),
+    .seg_b(seg_b),
+    .seg_c(seg_c),
+    .seg_d(seg_d),
+    .seg_e(seg_e),
+    .seg_f(seg_f),
+    .seg_g(seg_g)
+);
 
       // Include power ports for the Gate Level test:
 `ifdef GL_TEST
