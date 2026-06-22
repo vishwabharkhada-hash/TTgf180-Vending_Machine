@@ -59,7 +59,7 @@ module tt_um_vending_machine (
     assign uio_out[0] = seg_f;
     assign uio_out[1] = seg_g;
     assign uio_out[7:2] = 0;
-    assign uio_oe = 0b0000_0011;
+    assign uio_oe = 8'b0000_0011;
 
 
   // List all unused inputs to prevent warnings
