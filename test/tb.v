@@ -27,9 +27,32 @@ module tb ();
   wire VGND = 1'b0;
 `endif
 
+wire onlinepayment_selected = ui_in[0];
+    wire [3:0] selected_product_number = ui_in[4:1];
+    wire online_payment_success = ui_in[5];
+
+    wire show_product_number;
+    wire show_payment_status;
+    wire show_output_status;
+    wire seg_a, seg_b, seg_c, seg_d;
+    wire seg_e, seg_f, seg_g;
+
+      // All output pins must be assigned. If not used, assign to 0.
+    assign show_product_number = uo_out[0];
+    assign show_payment_status = uo_out[1];
+    assign show_output_status = uo_out[2];
+    assign seg_a = uo_out[3];
+    assign seg_b = uo_out[4];
+    assign seg_c = uo_out[5];
+    assign seg_d = uo_out[6];
+    assign seg_e = uo_out[7];
+
+    assign seg_f = uio_out[0];
+    assign seg_g = uio_out[1];
+
   // Replace tt_um_example with your module name:
 tt_um_vending_machine user_project(
-  
+
       // Include power ports for the Gate Level test:
 `ifdef GL_TEST
       .VPWR(VPWR),
