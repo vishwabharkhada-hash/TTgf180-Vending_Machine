@@ -4,14 +4,14 @@ from cocotb.clock import Clock
 
 
 async def reset_dut(dut):
-    dut.reset_n.value = 0
+    dut.rst_n.value = 0
     dut.onlinepayment_selected.value = 0
     dut.selected_product_number.value = 0
     dut.online_payment_success.value = 0
-    dut.timeout.value = 0
+    dut.dut.timeout.value = 0
 
     await Timer(20, unit="ns")
-    dut.reset_n.value = 1
+    dut.rst_n.value = 1
     await Timer(20, unit="ns")
 
 
@@ -77,7 +77,7 @@ async def test_timeout(dut):
     dut.selected_product_number.value = 3
     await RisingEdge(dut.clk)
 
-    dut.timeout.value = 1
+    dut.dut.timeout.value = 1
     await RisingEdge(dut.clk)
 
     assert dut.show_product_number.value == 0, \
