@@ -23,6 +23,8 @@ module tt_um_example (
     wire show_product_number;
     wire show_payment_status;
     wire show_output_status;
+    wire seg_a, seg_b, seg_c, seg_d;
+    wire seg_e, seg_f, seg_g;
 
     vending_machine_fsm dut(
         .clk(clk),
@@ -32,7 +34,14 @@ module tt_um_example (
         .online_payment_success(online_payment_success),
         .show_product_number(show_product_number),
         .show_payment_status(show_payment_status),
-        .show_output_status(show_output_status)
+        .show_output_status(show_output_status),
+	.seg_a(seg_a),
+	.seg_b(seg_b),
+	.seg_c(seg_c),
+	.seg_d(seg_d),
+	.seg_e(seg_e),
+	.seg_f(seg_f),
+	.seg_g(seg_g)
     );
 
     
@@ -41,9 +50,15 @@ module tt_um_example (
     assign uo_out[0] = show_product_number;
     assign uo_out[1] = show_payment_status;
     assign uo_out[2] = show_output_status;
-    assign uo_out[7:3] = 0;
+    assign uo_out[3] = seg_a;
+    assign uo_out[4] = seg_b;
+    assign uo_out[5] = seg_c;
+    assign uo_out[6] = seg_d;
+    assign uo_out[7] = seg_e;
 
-    assign uio_out = 0;
+    assign uio_out[0] = seg_f;
+    assign uio_out[1] = seg_g;
+    assign uio_out[7:2] = 0;
     assign uio_oe = 0;
 
 
