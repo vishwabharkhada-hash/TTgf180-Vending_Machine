@@ -4,16 +4,18 @@ from cocotb.clock import Clock
 
 async def reset_dut(dut):
     """Puts the chip into a known starting state."""
-    # 1. Initialize ALL top-level inputs to avoid 'X' states!
     dut.ena.value = 1
-    dut.ui_in.value = 0
+    
+    # Initialize with an invalid product number (8) so the FSM doesn't auto-advance.
+    # binary 0001_0000 = decimal 16. This puts '1000' into ui_in[4:1].
+    dut.ui_in.value = 16 
+    
     dut.uio_in.value = 0
     
     dut.rst_n.value = 0 # Pull reset LOW (active)
     await Timer(20, unit="ns")
     dut.rst_n.value = 1 # Pull reset HIGH (inactive)
     await Timer(20, unit="ns")
-
 
 @cocotb.test()
 async def test_reset(dut):
