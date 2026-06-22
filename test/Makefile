@@ -6,8 +6,7 @@ SIM ?= icarus
 FST ?= -fst # Use more efficient FST format
 TOPLEVEL_LANG ?= verilog
 SRC_DIR = $(PWD)/../src
-PROJECT_SOURCES = project.v
-
+PROJECT_SOURCES = vending_machine.v tt_um_vishwabharkhada-hash_vending_machine.v
 ifneq ($(GATES),yes)
 
 # RTL simulation:
