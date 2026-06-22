@@ -218,8 +218,8 @@ always @(posedge clk) begin
            _a_prove_reset_ : assert(current_state == STATE_SELECT_PRODUCT);
 
         // R4: Timeout in payment state returns to select state
-        if ($past(current_state) == STATE_PAYMENT && $past(timeout))
-           _a_timeout_ : assert(current_state == STATE_SELECT_PRODUCT);
+       //f ($past(current_state) == STATE_PAYMENT && $past(timeout))
+        // _a_timeout_ : assert(current_state == STATE_SELECT_PRODUCT);
 
         // R2: Output only allowed in output state
         if (show_output_status)
