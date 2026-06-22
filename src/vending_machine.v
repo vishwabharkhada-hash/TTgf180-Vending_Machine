@@ -30,7 +30,7 @@ module vending_machine_fsm (
     reg product_available;
 
     reg [11:0] product_price;
-    reg timeout = 0;
+   //eg timeout = 0;
 
     reg online_payment_complete;
     reg payment_incomplete;
@@ -86,9 +86,9 @@ module vending_machine_fsm (
             end
 
             STATE_PAYMENT: begin
-                if (timeout)
-                    next_state = STATE_SELECT_PRODUCT;
-                else if (online_payment_complete)
+               //(timeout)
+               //   next_state = STATE_SELECT_PRODUCT;
+                if (online_payment_complete)
                     next_state = STATE_OUTPUT_PRODUCT;
             end
 
