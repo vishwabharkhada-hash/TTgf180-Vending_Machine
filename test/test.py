@@ -66,19 +66,19 @@ async def test_successful_payment(dut):
         "Product should be dispensed after successful payment"
 
 
-# @cocotb.test()
-# async def test_timeout(dut):
-#     """Timeout should reset machine"""
+@cocotb.test()
+async def test_timeout(dut):
+     """Timeout should reset machine"""
+     cocotb.start_soon(Clock(dut.clk, 10, unit="ns").start())
 
-#     cocotb.start_soon(Clock(dut.clk, 10, unit="ns").start())
+     await reset_dut(dut)
 
-#     await reset_dut(dut)
+     dut.selected_product_number.value = 3
+     await RisingEdge(dut.clk)
 
-#     dut.selected_product_number.value = 3
-#     await RisingEdge(dut.clk)
+     dut.timeout.value = 1
+    await RisingEdge(dut.clk)
 
-#     dut.timeout.value = 1
-#     await RisingEdge(dut.clk)
 
-#     assert dut.show_product_number.value == 0, \
-#         "Timeout should return machine to selection state"
+assert dut.show_product_number.value == 1, \
+         "Timeout should return machine to selection state"
