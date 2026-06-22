@@ -30,7 +30,7 @@ module vending_machine_fsm (
     reg product_available;
 
     reg [11:0] product_price;
-    reg timeout;
+    reg timeout = 0;
 
     reg online_payment_complete;
     reg payment_incomplete;
@@ -286,6 +286,8 @@ default: begin
 end
     endcase
 end
+
+wire _unused = &{product_price, payment_incomplete, 1'b0};
 
 endmodule
 
